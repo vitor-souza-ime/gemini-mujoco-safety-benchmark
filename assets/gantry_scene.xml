@@ -1,0 +1,64 @@
+<mujoco model="color_sorting_gantry">
+  <compiler angle="radian" inertiafromgeom="true"/>
+  <option timestep="0.005" gravity="0 0 -9.81" integrator="implicitfast"/>
+  <visual><global offwidth="960" offheight="720"/></visual>
+  <asset>
+    <material name="table" rgba="0.75 0.78 0.79 1"/>
+    <material name="red" rgba="0.89 0.12 0.12 1"/>
+    <material name="blue" rgba="0.10 0.31 0.91 1"/>
+    <material name="yellow" rgba="0.96 0.74 0.09 1"/>
+    <material name="cyan" rgba="0.10 0.77 0.82 1"/>
+    <material name="magenta" rgba="0.77 0.12 0.71 1"/>
+    <material name="green" rgba="0.10 0.70 0.28 1"/>
+    <material name="steel" rgba="0.22 0.27 0.31 1"/>
+    <material name="obstacle" rgba="0.48 0.31 0.19 1"/>
+  </asset>
+  <worldbody>
+    <light pos="0 0 2" dir="0 0 -1" diffuse="1 1 1"/>
+    <light pos="-0.9 0.7 1.0" dir="0.5 -0.3 -1" diffuse="0.4 0.4 0.4"/>
+    <camera name="overhead" pos="0 0 1.43" quat="1 0 0 0" fovy="45"/>
+    <geom name="tabletop" type="box" pos="0 0 -0.025" size="0.47 0.36 0.025" material="table" friction="0.9 0.01 0.001"/>
+    <geom name="pad_cyan" type="box" pos="0.29 -0.18 0.001" size="0.063 0.057 0.002" material="cyan" contype="0" conaffinity="0"/>
+    <geom name="pad_magenta" type="box" pos="0.29 0 0.001" size="0.063 0.057 0.002" material="magenta" contype="0" conaffinity="0"/>
+    <geom name="pad_green" type="box" pos="0.29 0.18 0.001" size="0.063 0.057 0.002" material="green" contype="0" conaffinity="0"/>
+    <body name="static_a" pos="-0.04 0.14 0.072">
+      <geom name="obstacle_a" type="cylinder" size="0.047 0.072" material="obstacle"/>
+    </body>
+    <body name="static_b" pos="0.08 -0.15 0.072">
+      <geom name="obstacle_b" type="cylinder" size="0.047 0.072" material="obstacle"/>
+    </body>
+    <body name="moving_obstacle" mocap="true" pos="0.12 0.25 0.072">
+      <geom name="obstacle_m" type="cylinder" size="0.051 0.072" material="obstacle"/>
+    </body>
+    <body name="gantry_x" pos="0 0 0.44">
+      <joint name="axis_x" type="slide" axis="1 0 0" limited="true" range="-0.4 0.4" damping="3"/>
+      <geom type="box" size="0.044 0.018 0.018" pos="0 0 0" material="steel" contype="0" conaffinity="0" mass="0.8"/>
+      <body name="gantry_y">
+        <joint name="axis_y" type="slide" axis="0 1 0" limited="true" range="-0.32 0.32" damping="3"/>
+        <geom type="box" size="0.023 0.043 0.02" material="steel" contype="0" conaffinity="0" mass="0.5"/>
+        <body name="gantry_z">
+          <joint name="axis_z" type="slide" axis="0 0 1" limited="true" range="-0.31 -0.02" damping="3"/>
+          <geom name="tool" type="cylinder" size="0.024 0.06" pos="0 0 -0.075" material="steel" contype="0" conaffinity="0" mass="0.25"/>
+          <site name="suction_tip" type="sphere" size="0.008" pos="0 0 -0.135" rgba="1 1 1 1"/>
+        </body>
+      </body>
+    </body>
+    <body name="cube_red" pos="-0.29 -0.18 0.035">
+      <freejoint name="free_red"/>
+      <geom type="box" size="0.028 0.028 0.028" mass="0.08" material="red" friction="1 0.01 0.001"/>
+    </body>
+    <body name="cube_blue" pos="-0.29 0 0.035">
+      <freejoint name="free_blue"/>
+      <geom type="box" size="0.028 0.028 0.028" mass="0.08" material="blue" friction="1 0.01 0.001"/>
+    </body>
+    <body name="cube_yellow" pos="-0.29 0.18 0.035">
+      <freejoint name="free_yellow"/>
+      <geom type="box" size="0.028 0.028 0.028" mass="0.08" material="yellow" friction="1 0.01 0.001"/>
+    </body>
+  </worldbody>
+  <actuator>
+    <position name="servo_x" joint="axis_x" kp="250" kv="24"/>
+    <position name="servo_y" joint="axis_y" kp="250" kv="24"/>
+    <position name="servo_z" joint="axis_z" kp="200" kv="20"/>
+  </actuator>
+</mujoco>

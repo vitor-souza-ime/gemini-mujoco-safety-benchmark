@@ -1,0 +1,6 @@
+V13_50_CHAMADAS_RETOMADA
+50 new scenes: IDs 21-70
+Crash-safe per-scene API checkpoint
+Persisted RPM pacing across restarts
+6 paper figures + 3 primary tables + supplementary CSVs
+Optional merge with V11 20 scenes => 70 unique scenes / 280 MuJoCo executions
