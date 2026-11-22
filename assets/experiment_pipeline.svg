@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760" role="img" aria-labelledby="title desc">
+<title id="title">One-shot Gemini and safety execution benchmark workflow</title>
+<desc id="desc">A seeded MuJoCo task is rendered for a one-shot Gemini decision. The same decision is shared by open-loop, geometric shield, and local recovery methods, while a ground-truth geometric oracle is evaluated as a reference. All methods are measured in the simulator.</desc>
+<defs>
+  <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L9 5 L0 10 Z" fill="#64748b"/></marker>
+  <filter id="shadow" x="-15%" y="-15%" width="130%" height="130%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#0f172a" flood-opacity=".10"/></filter>
+</defs>
+<rect width="1280" height="760" rx="24" fill="#f8fafc"/>
+<text x="54" y="55" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#0f172a">Experimental workflow</text>
+<text x="54" y="84" font-family="Arial,sans-serif" font-size="15" fill="#64748b">One accepted model response per scene · paired execution conditions · common MuJoCo evaluation</text>
+<g filter="url(#shadow)">
+  <rect x="55" y="135" width="230" height="135" rx="16" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <rect x="350" y="135" width="230" height="135" rx="16" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
+  <rect x="645" y="135" width="265" height="135" rx="16" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+</g>
+<g font-family="Arial,sans-serif" fill="#0f172a" text-anchor="middle">
+  <text x="170" y="174" font-size="18" font-weight="700">1 · Seeded task</text>
+  <text x="170" y="204" font-size="14">50 scenes (IDs 21–70)</text>
+  <text x="170" y="228" font-size="13" fill="#475569">Clear · blocked · dynamic · clutter</text>
+  <text x="465" y="174" font-size="18" font-weight="700">2 · MuJoCo scene</text>
+  <text x="465" y="204" font-size="14">Cartesian gantry + obstacles</text>
+  <text x="465" y="228" font-size="13" fill="#475569">Overhead RGB observation</text>
+  <text x="777" y="174" font-size="18" font-weight="700">3 · Gemini Robotics ER 2</text>
+  <text x="777" y="204" font-size="14">Single structured JSON response</text>
+  <text x="777" y="228" font-size="13" fill="#475569">Object · goal · coarse route hint</text>
+</g>
+<path d="M285 202 H342" stroke="#64748b" stroke-width="3" marker-end="url(#arr)"/>
+<path d="M580 202 H637" stroke="#64748b" stroke-width="3" marker-end="url(#arr)"/>
+<rect x="950" y="145" width="275" height="115" rx="16" fill="#fff" stroke="#cbd5e1" stroke-width="2" filter="url(#shadow)"/>
+<text x="1087" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#0f172a">Paired decision reuse</text>
+<text x="1087" y="208" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#475569">The same cached JSON is used</text>
+<text x="1087" y="229" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#475569">by all three Gemini conditions.</text>
+<path d="M910 202 H942" stroke="#64748b" stroke-width="3" marker-end="url(#arr)"/>
+<path d="M777 270 V315 H530 V350" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+<path d="M777 315 H830 V350" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+<path d="M1087 260 V315 H1135 V350" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+<g filter="url(#shadow)">
+  <rect x="55" y="350" width="245" height="145" rx="16" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+  <rect x="350" y="350" width="245" height="145" rx="16" fill="#ffedd5" stroke="#ea580c" stroke-width="2"/>
+  <rect x="645" y="350" width="245" height="145" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <rect x="940" y="350" width="285" height="145" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+</g>
+<g font-family="Arial,sans-serif" text-anchor="middle" fill="#0f172a">
+  <text x="177" y="388" font-size="18" font-weight="700">Ground-truth oracle</text>
+  <text x="177" y="420" font-size="14">True object and target</text>
+  <text x="177" y="444" font-size="13" fill="#475569">Geometry-informed reference</text>
+  <text x="472" y="388" font-size="18" font-weight="700">Gemini open-loop</text>
+  <text x="472" y="420" font-size="14">Direct / hinted route</text>
+  <text x="472" y="444" font-size="13" fill="#475569">No obstacle-aware filtering</text>
+  <text x="767" y="388" font-size="18" font-weight="700">Gemini + geometric shield</text>
+  <text x="767" y="420" font-size="14">Initial safe-route filter</text>
+  <text x="767" y="444" font-size="13" fill="#475569">No post-change replanning</text>
+  <text x="1082" y="388" font-size="18" font-weight="700">Gemini + local recovery</text>
+  <text x="1082" y="420" font-size="14">Monitor after obstacle motion</text>
+  <text x="1082" y="444" font-size="13" fill="#475569">Replan if remaining path is blocked</text>
+</g>
+<path d="M177 495 V550 H640 V590" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+<path d="M472 495 V550 H640" fill="none" stroke="#64748b" stroke-width="2.5"/>
+<path d="M767 495 V550 H640" fill="none" stroke="#64748b" stroke-width="2.5"/>
+<path d="M1082 495 V550 H640" fill="none" stroke="#64748b" stroke-width="2.5"/>
+<rect x="390" y="590" width="500" height="105" rx="18" fill="#0f172a" filter="url(#shadow)"/>
+<g font-family="Arial,sans-serif" text-anchor="middle" fill="#fff">
+  <text x="640" y="628" font-size="20" font-weight="700">4 · Common MuJoCo evaluation</text>
+  <text x="640" y="657" font-size="14">Task success · safe success · collisions · clearance · path cost</text>
+  <text x="640" y="679" font-size="13" fill="#cbd5e1">50 scenes × 4 methods = 200 simulator executions</text>
+</g>
+<text x="640" y="730" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#64748b">Gemini provides semantic grounding and a coarse route preference; it does not command robot joints or torques.</text>
+</svg>
