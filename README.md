@@ -163,7 +163,7 @@ Main dependencies:
 python run.py check
 ~~~
 
-Or double-click `00_check_config_windows.bat`.
+Or double-click `00_check_config_windows.bat`. This command prints the local settings; it does not validate the API key against Google's service.
 
 ### 5. Run a local smoke test
 
@@ -290,7 +290,7 @@ gemini-mujoco-safety-benchmark/
 └── results.rar
 ~~~
 
-The Windows helper scripts are located in the repository root and are named `00_...` through `08_...`.
+The Windows helper scripts are located in the repository root and are named `00_...` through `08_...`. Note that `07_merge_with_previous_20_windows.bat` currently calls `merge_20_plus_50.py`, which is not present in the tracked repository snapshot; do not use this optional merge script until that helper is added.
 
 ## 🧪 Tests
 
