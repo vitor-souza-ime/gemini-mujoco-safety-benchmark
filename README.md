@@ -136,7 +136,11 @@ cd gemini-mujoco-safety-benchmark
 
 ~~~bash
 python -m venv .venv
-.venv\Scripts\activate
+# Command Prompt
+.venv\Scripts\activate.bat
+
+# PowerShell
+.\.venv\Scripts\Activate.ps1
 ~~~
 
 ### 3. Install dependencies
